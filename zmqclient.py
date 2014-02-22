@@ -19,9 +19,9 @@ if len(sys.argv) > 2:
 context = zmq.Context()
 print "Connecting to server..."
 socket = context.socket(zmq.REQ) #for client we use REQ
-socket.connect ("udp://localhost:%s" % port)
+socket.connect ("tcp://localhost:%s" % port)
 if len(sys.argv) > 2:
-    socket.connect ("udp://localhost:%s" % port1)
+    socket.connect ("tcp://localhost:%s" % port1)
 
 
 #  Do 10 requests, waiting each time for a response

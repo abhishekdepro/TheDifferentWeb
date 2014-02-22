@@ -16,7 +16,7 @@ if len(sys.argv) > 1:
 
 context = zmq.Context()
 socket = context.socket(zmq.REP)  #for server we use REP
-socket.bind("pgm://*:%s" % port)
+socket.bind("tcp://*:%s" % port)
 
 
 while True:
