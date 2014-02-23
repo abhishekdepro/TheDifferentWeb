@@ -5,7 +5,7 @@
 
 import random
 pieces={}
-
+peers={}
 """Class DHT to create distributed hash table"""
 class DistributedHashTable(object):
     #default constructor used as a String builder
@@ -13,7 +13,7 @@ class DistributedHashTable(object):
         self.string=string
         pieces={}
         chararray=[]
-        
+        peers={}
         
     #slice string to character array
     def tochararray(self):
@@ -40,17 +40,25 @@ def randomize(peer_list,Table):
 
 #used to see which bits have gone to which peer
 def sortbypeers(Table):
-    peers={}
-    for piece in Table.pieces:
-        item=Table.pieces.get(str(piece))
-        if((peers.has_key(str(item[1])))==True):
-            peers[str(item[1])].append(item[0])
-        else:
-            peers[str(item[1])]=list(item[0])
     
-    print '<---PEER AND FILE INFORMATION--->'
+    dist=[]
+    for piece in Table.pieces:
+        dist=Table.pieces[str(piece)]
+        for i in range(1, len(dist)):
+            if((peers.has_key(dist[i]))==True):
+                peers[dist[i]].append(dist[0])
+            else:
+                peers[dist[i]]=list(dist[0])
+
+#display peer data list
+def displaypeerdatainfo():
     for peer in peers:
-        print str(peer)+ '-->' +str(peers[str(peer)])
+        print 'Peer no. '+ str(peer) + ' has data: '+ str(peers[peer])
+
+#check if peer has all pieces
+def recvdall(Table,peer):
+    if (Table.peers[str(peer)]==Table.chararray):
+        print 'Fiesta'
 
 
     
