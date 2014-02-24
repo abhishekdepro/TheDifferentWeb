@@ -36,7 +36,7 @@ def randomize(peer_list,Table):
         for piece in Table.pieces:
             item=random.randint(1,len(peer_list))
             Table.pieces[str(piece)].append(item)
-            print 'Piece ' + str(piece) + ' sent to ' + str(item) + ' : DATA :' + str(Table.pieces.get(str(piece)))
+            print 'Piece ' + str(piece) + ' sent to ' + str(item) + ' : DATA : ' + str(Table.pieces.get(str(piece)))
 
 #used to see which bits have gone to which peer
 def sortbypeers(Table):
@@ -55,10 +55,16 @@ def displaypeerdatainfo():
     for peer in peers:
         print 'Peer no. '+ str(peer) + ' has data: '+ str(peers[peer])
 
-#check if peer has all pieces
-def recvdall(Table,peer):
-    if (Table.peers[str(peer)]==Table.chararray):
-        print 'Fiesta'
 
-
+def testmd5(md5hashcheck):
     
+    for peer in peers:
+        receivedlist=list(peers[peer])
+        receivedlist.sort()
+        receivedstring=''.join(receivedlist)
+        
+        if(md5hashcheck==receivedstring):
+            print "Holla"
+        else:
+            print receivedstring
+    print md5hashcheck
