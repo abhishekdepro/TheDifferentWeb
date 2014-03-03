@@ -70,6 +70,14 @@ def print_node_edge_data(DG):
     else:
         print 'Not a Directed Graph'
 
+#function to find shortest path using Bellman-Ford algorithm
+def shortest_distance(DG, source):
+    distance=nx.bellman_ford(DG, source) #distance contains both distance and pred tuples
+    for item in distance[1]:
+        print str(source)+'-->'+str(item)+' min cost: '+str(distance[1][item])
+    
+    return distance
+
 
 """
 NETWORKX LICENSE:
